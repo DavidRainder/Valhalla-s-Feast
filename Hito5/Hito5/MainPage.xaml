@@ -8,6 +8,15 @@
     mc:Ignorable="d"
     Background="LightPink">
 
+    <Page.Resources>
+        <DataTemplate x:Key="MISSION_MENU_ITEM">
+            <StackPanel Width="350">
+                <TextBlock Text="Mision" FontSize="14"></TextBlock>
+                <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -18,7 +27,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -26,10 +35,61 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="INICIO" BorderBrush="DarkOliveGreen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
-            <Button Grid.Column="1" Content="JUGAR" BorderBrush="DarkOliveGreen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
-            <Button Grid.Column="2" Content="BANQUETE" BorderBrush="DarkOliveGreen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
-            <Button Grid.Column="3" Content="TIENDA" BorderBrush="DarkOliveGreen" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" VerticalAlignment="Stretch"></Button>
+            <Button Grid.Column="0" Content="INICIO" Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
+            <Button Grid.Column="1" Content="JUGAR" Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
+            <Button Grid.Column="2" Content="BANQUETE" Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Button>
+            <Button Grid.Column="3" Content="TIENDA" Background="LightBlue" BorderBrush="AliceBlue " HorizontalAlignment="Stretch" Grid.ColumnSpan="2" VerticalAlignment="Stretch"></Button>
+        </Grid>
+        <Rectangle
+            Grid.Column="1" Grid.Row="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Fill="DarkGoldenrod"
+        ></Rectangle>
+        <TextBlock
+            VerticalAlignment="Center"
+            TextAlignment="Left"
+            FontFamily="Arial"
+            Padding="30"
+            Text="MISIONES"
+            Grid.Column="1" Grid.Row="1" 
+         ></TextBlock>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle
+            Grid.Row="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Fill="DarkGoldenrod"
+        ></Rectangle>
+            <TextBlock
+            VerticalAlignment="Center"
+            TextAlignment="Left"
+            FontFamily="Arial"
+            Padding="30"
+            Text="SKÖL"
+            Grid.Row="1" 
+         ></TextBlock>
+            <ListView Grid.Row="0" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}">
+            </ListView>
+            <ListView Grid.Row="2" ItemsSource="1234567890">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="350" Height="30">
+                            <Rectangle Fill="AliceBlue" HorizontalAlignment="Left" Height="30" Width="250"></Rectangle>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Assets/StoreLogo.png"></Image>
+                                <TextBlock Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center"></TextBlock>
+
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Page>
