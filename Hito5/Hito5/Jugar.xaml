@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="Hito5.MainPage"
+    x:Class="Hito5.Assets.Jugar"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Hito5"
+    xmlns:local="using:Hito5.Assets"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -15,6 +15,22 @@
                 <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top"/>
             </StackPanel>
         </DataTemplate>
+        
+        <DataTemplate x:Key="Card">
+            <Grid>
+                <StackPanel Width="198" Height="240">
+                    <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Height="180" Width="180"></Rectangle>
+                    <Rectangle Fill="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Height="200" Width="180"></Rectangle>
+                </StackPanel>
+                <Image Source="Assets/StoreLogo.png" Width="180" Height="180" VerticalAlignment="Top"></Image>
+                <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontStyle="Italic"
+                           FontWeight="Bold"></TextBlock>
+            </Grid>
+        </DataTemplate>
+        
         <Style TargetType="Button">
             <Setter Property="Background" Value="LightBlue"></Setter>
             <Setter Property="BorderBrush" Value="AliceBlue"></Setter>
@@ -22,7 +38,8 @@
             <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
         </Style>
     </Page.Resources>
-
+<!--Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"-->
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -130,23 +147,64 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <!--Eventos actuales-->
+        
+        <!--Menú Jugar-->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="3.5*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="2" Content="Evento Actual" FontSize="45"
-                    FontStyle="Italic" Foreground="CadetBlue" Padding="20" Background="LightBlue"
-                    HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" 
-                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                    BorderBrush="AliceBlue" BorderThickness="5" Margin="20"></Button>
+
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110, 0">  
+                <Image Source="Assets/StoreLogo.png" Width="50"></Image>
+                <Image Source="Assets/StoreLogo.png" Width="50"></Image>
+            </StackPanel>
+            
+            <Grid Grid.Row="1" Margin="100, 0">
+                <GridView ItemsSource="123456789ABCDEF"
+                    x:Name="StyledGrid"
+                    ItemTemplate="{StaticResource Card}">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Margin" Value="13, 9, 13, 9"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
+                           MaximumRowsOrColumns="3"
+                           Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
             </Grid>
+            <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="EDITAR" FontSize="25"
+                    Background="Orange" BorderBrush="DarkOrange"></Button>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Content="VS. JUGADOR" Margin="10" Width="200"></Button>
+                    <Button Content="VS. IA" Margin="10"></Button>
+                    <Button Content="CLASIFICATORIA" Margin="10"></Button>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Content="JUGAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Margin="10" Width="150" Height="70"></Button>
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+        
     </Grid>
 </Page>

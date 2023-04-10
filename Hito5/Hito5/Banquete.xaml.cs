@@ -15,16 +15,16 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
+// La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Hito5
 {
     /// <summary>
-    /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
+    /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Banquete : Page
     {
-        public MainPage()
+        public Banquete()
         {
             this.InitializeComponent();
         }
@@ -46,6 +46,12 @@ namespace Hito5
         private void Tienda_Page(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
+        }
+
+        private void EditarMazo_Page(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(EditarMazo), null, new SuppressNavigationTransitionInfo());
+
         }
     }
 }
