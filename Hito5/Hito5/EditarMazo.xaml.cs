@@ -48,5 +48,10 @@ namespace Hito5
         {
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
+
+        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

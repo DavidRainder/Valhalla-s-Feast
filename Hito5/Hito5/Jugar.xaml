@@ -9,29 +9,47 @@
     Background="SteelBlue">
 
     <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+        </Style>
         <DataTemplate x:Key="MISSION_MENU_ITEM">
             <StackPanel Width="350">
-                <TextBlock Text="Mision" FontSize="14"></TextBlock>
+                <TextBlock Text="Mision" FontSize="14" FontFamily="Metal Mania"></TextBlock>
                 <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top"/>
             </StackPanel>
         </DataTemplate>
-        
-        <DataTemplate x:Key="Card">
-            <Grid>
-                <StackPanel Width="198" Height="240">
-                    <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               Height="180" Width="180"></Rectangle>
-                    <Rectangle Fill="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               Height="200" Width="180"></Rectangle>
+        <DataTemplate x:Key="SKOL_ITEM_MENU">
+            <Grid Width="350" Height="30">
+                <Rectangle Fill="AliceBlue" HorizontalAlignment="Left" Height="30" Width="250"></Rectangle>
+                <StackPanel Orientation="Horizontal">
+                    <Border Margin="3,0" CornerRadius="15" BorderBrush="Black" BorderThickness="2">
+                        <Image Source="Assets/SkolProfile.png" Width="30" Height="30"></Image>
+                    </Border>
+                    <TextBlock Margin="7,0" Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center" FontFamily="Metal Mania"></TextBlock>
+
                 </StackPanel>
-                <Image Source="Assets/StoreLogo.png" Width="180" Height="180" VerticalAlignment="Top"></Image>
-                <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontStyle="Italic"
-                           FontWeight="Bold"></TextBlock>
             </Grid>
         </DataTemplate>
-        
+        <DataTemplate x:Key="Deck">
+            <Grid>
+                <Border CornerRadius="30">
+                    <StackPanel Width="198" Height="240">
+                        <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Height="180" Width="180"></Rectangle>
+                        <Rectangle Fill="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Height="200" Width="180"></Rectangle>
+                    </StackPanel>
+                </Border>
+                <Border Margin="0,10" CornerRadius="10" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Image Source="Assets/Deck.png" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                </Border>
+                <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="Metal Mania"/>
+            </Grid>
+        </DataTemplate>
+
         <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
             <Setter Property="Background" Value="LightBlue"></Setter>
             <Setter Property="BorderBrush" Value="AliceBlue"></Setter>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
@@ -41,6 +59,9 @@
 <!--Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"-->
     
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
@@ -50,23 +71,29 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="3"></Rectangle>
+        <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2"></Rectangle>
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="CadetBlue" Opacity="0.5" Grid.RowSpan="4"></Rectangle>
         <!--Título-->
+
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Valhalla Feast" FontSize="80" VerticalAlignment="Center"
-                    Foreground="Black" FontWeight="ExtraLight" Padding="50"></TextBlock>
-            <Image Source="Assets/StoreLogo.png" Width="100" Margin="-40"></Image>
+                    Foreground="Black" FontWeight="ExtraLight" Padding="50" ></TextBlock>
+            <Image Source="Assets/Axe.png" Width="100" Margin="-40"></Image>
         </StackPanel>
         <!--Dinero-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Padding="40">
-            <Image  Source="Assets/StoreLogo.png" Width="20" VerticalAlignment="Bottom"></Image>
+            <Image Source="Assets/MoneyShard.png" Width="25" Height="28" VerticalAlignment="Bottom"></Image>
             <TextBlock Text="XXXX" FontSize="20" VerticalAlignment="Bottom"
                     Foreground="Black" FontWeight="ExtraLight"></TextBlock>
         </StackPanel>
         <!--Usuario-->
         <StackPanel Orientation="Horizontal" Grid.Column="1" Padding="30">
-            <Image Source="Assets/StoreLogo.png" VerticalAlignment="Center"
-                Width="90" Height="87"/>
-            <Grid Height="50">
+            <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="100" Width="100">
+                <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="100" Height="100"/>
+            </Border>
+            <Grid Height="50" Margin="20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*"></RowDefinition>
                     <RowDefinition Height="4*"></RowDefinition>
@@ -74,13 +101,14 @@
                 <Rectangle Fill="AliceBlue" Width="150" Height="58" VerticalAlignment="Center"/>
                 <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
                 <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"></ProgressBar>
-                <Rectangle Grid.Row="1" HorizontalAlignment="Right" Fill="DarkRed" Width="20" Height="58" VerticalAlignment="Center"
-                        Margin="3"/>
+                <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
+                    <Rectangle Fill="DarkRed" Height="58" Width="20" VerticalAlignment="Center"/>
+                </Border>
                 <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
             </Grid>
         </StackPanel>
         <!--Opciones-->
-        <Image Grid.Column="1" Source="Assets/StoreLogo.png" Width="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10"></Image>
+        <Image Grid.Column="1" Source="Assets/Settings.png" Width="50" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10"></Image>
         <!--Fila de botones-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -104,7 +132,6 @@
         <TextBlock
         VerticalAlignment="Center"
         TextAlignment="Left"
-        FontFamily="Arial"
         Padding="30"
         Text="MISIONES"
         Grid.Column="1" Grid.Row="1" 
@@ -125,29 +152,16 @@
             <TextBlock
         VerticalAlignment="Center"
         TextAlignment="Left"
-        FontFamily="Arial"
         Padding="30"
         Text="SKÖL"
         Grid.Row="1" 
         ></TextBlock>
             <ListView Grid.Row="0" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}">
             </ListView>
-            <ListView Grid.Row="2" ItemsSource="1234567890">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="350" Height="30">
-                            <Rectangle Fill="AliceBlue" HorizontalAlignment="Left" Height="30" Width="250"></Rectangle>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="Assets/StoreLogo.png"></Image>
-                                <TextBlock Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center"></TextBlock>
-
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView Grid.Row="2" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}">
             </ListView>
         </Grid>
-        
+
         <!--Menú Jugar-->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -162,14 +176,14 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110, 0">  
-                <Image Source="Assets/StoreLogo.png" Width="50"></Image>
-                <Image Source="Assets/StoreLogo.png" Width="50"></Image>
+                <Image Source="Assets/Search.png" Width="50"></Image>
+                <Image Source="Assets/Filters.png" Margin="20,0" Width="50"></Image>
             </StackPanel>
             
             <Grid Grid.Row="1" Margin="100, 0">
                 <GridView ItemsSource="123456789ABCDEF"
                     x:Name="StyledGrid"
-                    ItemTemplate="{StaticResource Card}">
+                    ItemTemplate="{StaticResource Deck}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="13, 9, 13, 9"/>
@@ -194,13 +208,13 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button Content="VS. JUGADOR" Margin="10" Width="200"></Button>
-                    <Button Content="VS. IA" Margin="10"></Button>
-                    <Button Content="CLASIFICATORIA" Margin="10"></Button>
+                    <Button CornerRadius="10" Content="VS. JUGADOR" Margin="10" Width="200"></Button>
+                    <Button CornerRadius="10" Content="VS. IA" Margin="10"></Button>
+                    <Button CornerRadius="10" Content="CLASIFICATORIA" Margin="10"></Button>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button Content="JUGAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Margin="10" Width="150" Height="70"></Button>
+                    <Button CornerRadius="20" Content="JUGAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Margin="10" Width="150" Height="70"></Button>
                 </StackPanel>
             </Grid>
             

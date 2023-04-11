@@ -142,6 +142,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Axe.png" />
+    <Content Include="Assets\Background.png" />
+    <Content Include="Assets\Card.png" />
+    <Content Include="Assets\Deck.png" />
+    <Content Include="Assets\Filters.png" />
+    <Content Include="Assets\MoneyShard.png" />
+    <Content Include="Assets\Search.png" />
+    <Content Include="Assets\Settings.png" />
+    <Content Include="Assets\SkolProfile.png" />
+    <Content Include="Assets\Sword.png" />
+    <Content Include="Assets\UserProfile.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -181,6 +192,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\MetalMania-Regular.ttf" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
