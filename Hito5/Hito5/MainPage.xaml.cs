@@ -47,5 +47,15 @@ namespace Hito5
         {
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

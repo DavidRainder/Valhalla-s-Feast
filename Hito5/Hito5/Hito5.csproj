@@ -131,6 +131,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Partida.xaml.cs">
+      <DependentUpon>Partida.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tienda.xaml.cs">
       <DependentUpon>Tienda.xaml</DependentUpon>
@@ -146,7 +149,10 @@
     <Content Include="Assets\Background.png" />
     <Content Include="Assets\Card.png" />
     <Content Include="Assets\Deck.png" />
+    <Content Include="Assets\DeckBack.png" />
+    <Content Include="Assets\Evento.png" />
     <Content Include="Assets\Filters.png" />
+    <Content Include="Assets\GameBackground.png" />
     <Content Include="Assets\MoneyShard.png" />
     <Content Include="Assets\Search.png" />
     <Content Include="Assets\Settings.png" />
@@ -182,6 +188,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Partida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tienda.xaml">
       <SubType>Designer</SubType>
