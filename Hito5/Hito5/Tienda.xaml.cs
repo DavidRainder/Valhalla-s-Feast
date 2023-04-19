@@ -28,6 +28,11 @@ namespace Hito5
         {
             this.InitializeComponent();
         }
+
+        public void ActualizaIU()
+        {
+
+        }
         private void Inicio_Page(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage), null, new SuppressNavigationTransitionInfo());

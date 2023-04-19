@@ -122,9 +122,11 @@
     <Compile Include="Banquete.xaml.cs">
       <DependentUpon>Banquete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controlador.cs" />
     <Compile Include="EditarMazo.xaml.cs">
       <DependentUpon>EditarMazo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameLoop.cs" />
     <Compile Include="Jugar.xaml.cs">
       <DependentUpon>Jugar.xaml</DependentUpon>
     </Compile>

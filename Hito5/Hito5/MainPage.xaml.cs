@@ -24,9 +24,19 @@ namespace Hito5
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        Controlador GameControl = null;
+        //Game Loop para el modo InGame.
+        InicioLoop GameLoop = null;
         public MainPage()
         {
             this.InitializeComponent();
+            GameControl = new Controlador();
+            GameLoop = new InicioLoop(this, GameControl);
+        }
+
+        public void ActualizaIU()
+        {
+
         }
         private void Inicio_Page(object sender, RoutedEventArgs e)
         {

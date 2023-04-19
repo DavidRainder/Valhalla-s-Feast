@@ -27,6 +27,10 @@ namespace Hito5
             this.InitializeComponent();
         }
 
+        public void ActualizaIU()
+        {
+
+        }
         private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
