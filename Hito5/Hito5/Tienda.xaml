@@ -221,16 +221,16 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="191*"></ColumnDefinition>
+                <ColumnDefinition Width="684*"/>
+                <ColumnDefinition Width="250*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110, 0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110,0,0,0" Grid.ColumnSpan="2">
                 <Image Source="Assets/Search.png" Width="30"></Image>
-                <Image Source="Assets/Filters.png" Width="30"></Image>
+                <Image Source="Assets/Filters.png" Width="30" Margin="10,0"></Image>
             </StackPanel>
-
-            <Grid Grid.Row="1" Margin="100, 0">
+            <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <GridView ItemsSource="123456789ABCDEF"
                     x:Name="StyledGrid"
                     ItemTemplate="{StaticResource Store_Card}">
@@ -248,25 +248,29 @@
                     </GridView.ItemsPanel>
                 </GridView>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
+            <Viewbox Grid.Column="3" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Viewbox Margin="10, 120" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <Button Content="SOBRES" Margin="10" Width="200" CornerRadius="20"></Button>
+                            <Button Content="CARTAS" Margin="10" CornerRadius="20"></Button>
+                        </StackPanel>
+                    </Viewbox>
 
-                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Button CornerRadius="20"  Content="CARTAS" Margin="10" Width="200" FontSize="24"></Button>
-                    <Button CornerRadius="20"  Content="SOBRES" Margin="10" Width="200" FontSize="24"></Button>
-                </StackPanel>
-
-                <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
-                    <Button CornerRadius="15" Content="COMPRAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange"></Button>
-                    <Button CornerRadius="10" Content="TODAS" FontSize="15" Background="DarkOrange" BorderBrush="Orange" Margin="5" Width="110" Height="30"></Button>
-                    <Button CornerRadius="10" Content="REGIÓN" FontSize="15" Background="DarkOrange" BorderBrush="Orange" Margin="5" Width="110" Height="30"></Button>
-                    <Button CornerRadius="10" Content="OFERTAS" FontSize="15" Background="DarkOrange" BorderBrush="Orange" Margin="5" Width="110" Height="30"></Button>
-                </StackPanel>
-            </Grid>
-
+                    <Viewbox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,120" >
+                        <StackPanel>
+                            <Button Margin="0,30" CornerRadius="20" Content="COMPRAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Width="180" Height="70"/>
+                            <Button Margin="0,10" CornerRadius="10" Content="TODAS" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>
+                            <Button Margin="0,10" CornerRadius="10" Content="REGIÓN" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>
+                            <Button Margin="0,10" CornerRadius="10" Content="OFERTAS" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>
+                        </StackPanel>
+                    </Viewbox>
+                </Grid>
+            </Viewbox>
         </Grid>
 
     </Grid>
