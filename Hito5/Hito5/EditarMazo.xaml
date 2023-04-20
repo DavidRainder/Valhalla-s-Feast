@@ -31,15 +31,15 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="Card" x:DataType="local:VMCard">
+        <DataTemplate x:Key="GridViewCard" x:DataType="local:VMCard">
             <Grid>
                 <StackPanel Width="198" Height="265">
                     <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                Height="200" Width="180"></Rectangle>
                     <StackPanel Orientation="Horizontal" Margin="9,0">
-                        <Rectangle Fill="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind firstRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
-                        <Rectangle Fill="OrangeRed" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind secondRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
                     </StackPanel>
                 </StackPanel>
@@ -69,16 +69,16 @@
                            Margin="14,-7"></TextBlock>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="Card_List">
+        <DataTemplate x:Key="Card_List" x:DataType="local:VMCard">
             <Grid Margin="4">
                 <Rectangle Fill="SteelBlue" Width="350"></Rectangle>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Assets/Sword.png" Width="40" Margin="7"></Image>
-                    <TextBlock Text="Nombre" Foreground="DarkGray" VerticalAlignment="Center"
+                    <Image Source="{x:Bind Icon}" Width="40" Margin="7"></Image>
+                    <TextBlock Text="{x:Bind Nombre}" Foreground="DarkGray" VerticalAlignment="Center"
                                HorizontalAlignment="Center" FontSize="20" Margin="10,0" FontStyle="Italic"
                                FontWeight="Bold"></TextBlock>
                 </StackPanel>
-                <TextBlock Text="x N" Foreground="DarkGray" 
+                <TextBlock Text="{x:Bind Quantity}" Foreground="DarkGray" 
                            HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Margin="10,0"></TextBlock>
             </Grid>
         </DataTemplate>
@@ -239,8 +239,9 @@
             <Grid Grid.Row="1" Grid.Column="1">
                 <GridView ItemsSource="{x:Bind cartas}"
                           ItemClick="AddToDeckList"
-                    x:Name="StyledGrid"
-                    ItemTemplate="{StaticResource Card}">
+                          IsItemClickEnabled="True"
+                    x:Name="CartasDisponibles"
+                    ItemTemplate="{StaticResource GridViewCard}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="13, 9, 13, 9"/>
@@ -293,7 +294,10 @@
                     <StackPanel>
                     <Viewbox>
                     <ListView x:Name="CurrentDeck" 
-                              ItemTemplate="{StaticResource Card_List}" MaxHeight="380" Height="247">
+                              ItemClick="RemoveCardFromList"
+                              IsItemClickEnabled="True"
+                              ItemTemplate="{StaticResource Card_List}" 
+                              MaxHeight="380" Height="247">
                     </ListView>
                 </Viewbox>
                     <Viewbox>
