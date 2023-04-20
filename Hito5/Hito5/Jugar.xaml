@@ -92,34 +92,41 @@
             </StackPanel>
         </Viewbox>
         <!--Usuario-->
-        <StackPanel Orientation="Horizontal" Padding="10" Height="92" Grid.Column="1">
-            <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
+        <ContentControl IsTabStop="True" TabIndex="2"
+                        Grid.Column="1" UseSystemFocusVisuals="True" 
+                        Margin="0,0,115,0">
+            <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
+                    IsTapEnabled="True" TabFocusNavigation="Once">
+                <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
 
-                <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
-            </Border>
-            <Grid Height="50" Margin="20,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
-                        RadiusX="15" RadiusY="20"/>
-                <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
-                <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
-                            CornerRadius="10"></ProgressBar>
-                <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
-                    <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
+                    <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
                 </Border>
-                <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
-            </Grid>
-        </StackPanel>
+                <Grid Height="50" Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
+                        RadiusX="15" RadiusY="20"/>
+                    <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                    <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
+                            CornerRadius="10"></ProgressBar>
+                    <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
+                        <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
+                    </Border>
+                    <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </ContentControl>
 
         <!--Opciones-->
         <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
-            <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+            <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
+                <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+            </ContentControl>
         </Viewbox>
         <!--Fila de botones-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1 "  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -167,7 +174,8 @@
         VerticalAlignment="Stretch"
         Fill="DarkGoldenrod"
     ></Rectangle>
-            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                      TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <TextBlock
                     VerticalAlignment="Center"
                     TextAlignment="Left"
@@ -177,7 +185,8 @@
                 ></TextBlock>
             </Viewbox>
 
-            <Viewbox HorizontalAlignment="Left" Stretch="Fill">
+            <Viewbox HorizontalAlignment="Left" Stretch="Fill"
+                      TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
                 </ListView>
             </Viewbox>
@@ -202,10 +211,14 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110,0,0,0" Grid.ColumnSpan="2">
-                <Image Source="Assets/Search.png" Width="30"></Image>
-                <Image Source="Assets/Filters.png" Width="30" Margin="10,0"></Image>
+                <Button Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="Assets/Search.png" Width="30"></Image>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="Assets/Filters.png" Width="30" Margin="10,0"></Image>
+                </Button>
             </StackPanel>
-            <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2"  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <GridView ItemsSource="123456789ABCDEF"
                     x:Name="StyledGrid"
                     ItemTemplate="{StaticResource Deck}" Margin="0,0,-80,0">
@@ -230,7 +243,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Viewbox Margin="10, 120" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <StackPanel>
+                        <StackPanel  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                             <Button Content="VS. JUGADOR" Margin="10" Width="200" CornerRadius="20"></Button>
                             <Button Content="VS. IA" Margin="10" Width="200" CornerRadius="20"></Button>
                             <Button Content="CLASIFICATORIA" Margin="10" CornerRadius="20"></Button>

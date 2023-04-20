@@ -10,11 +10,11 @@
 
     <Page.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
         </Style>
         <DataTemplate x:Key="MISSION_MENU_ITEM">
             <StackPanel Width="350">
-                <TextBlock Text="Mision" FontSize="14" FontFamily="Metal Mania"></TextBlock>
+                <TextBlock Text="Mision" FontSize="14" FontFamily="{StaticResource Fuente}"></TextBlock>
                 <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top" CornerRadius="20"/>
             </StackPanel>
         </DataTemplate>
@@ -26,13 +26,13 @@
                         <Image Source="Assets/SkolProfile.png" Width="30" Height="30"></Image>
                     </Border>
                     <TextBlock Margin="7,0" Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center" 
-                               FontFamily="Metal Mania" ></TextBlock>
+                               FontFamily="{StaticResource Fuente}" ></TextBlock>
 
                 </StackPanel>
             </Grid>
         </DataTemplate>
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
             <Setter Property="Background" Value="LightBlue"></Setter>
             <Setter Property="BorderBrush" Value="AliceBlue"></Setter>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
@@ -59,7 +59,7 @@
         <Viewbox HorizontalAlignment="Left" Margin="0,-16,0,5" Grid.RowSpan="2" Width="368">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Valhalla Feast" FontSize="50" VerticalAlignment="Center"
-                        Foreground="Black" FontWeight="ExtraLight" Padding="50" ></TextBlock>
+                        Foreground="Black" FontWeight="ExtraLight" Padding="50" SelectionChanged="TextBlock_SelectionChanged" ></TextBlock>
                 <Image Source="Assets/Axe.png" Width="70" Margin="-40"></Image>
             </StackPanel>
         </Viewbox>
@@ -68,11 +68,21 @@
             <StackPanel Orientation="Horizontal" Padding="20">
                     <Image Source="Assets/MoneyShard.png" Width="25" Height="28" VerticalAlignment="Bottom"></Image>
                     <TextBlock Text="XXXX" FontSize="20" VerticalAlignment="Bottom"
-                        Foreground="Black" FontWeight="ExtraLight"></TextBlock>
+                        Foreground="Black" FontWeight="ExtraLight">
+                    <TextBlock.FocusVisualPrimaryBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.FocusVisualPrimaryBrush></TextBlock>
             </StackPanel>
         </Viewbox>
         <!--Usuario-->
-        <StackPanel Orientation="Horizontal" Padding="10" Height="92" Grid.Column="1">
+        <ContentControl IsTabStop="True" TabIndex="2"
+                        Grid.Column="1" UseSystemFocusVisuals="True" 
+                        Margin="0,0,115,0">
+            <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
+                    IsTapEnabled="True" TabFocusNavigation="Once">
             <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
 
                 <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
@@ -93,13 +103,16 @@
                 <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
             </Grid>
         </StackPanel>
-
+        </ContentControl>
+        
         <!--Opciones-->
         <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
-            <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+            <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
+                <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+            </ContentControl>
         </Viewbox>
         <!--Fila de botones-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -107,7 +120,8 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Column="0" Stretch="Fill">
-                <Button Width="280" Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"></Button>
+                <Button Width="280" Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"
+                        ></Button>
             </Viewbox>
             <Viewbox Grid.Column="1" Stretch="Fill">
                 <Button Width="280" Grid.Column="1" Content="JUGAR" Click="Jugar_Page" FontSize="20"></Button>
@@ -142,12 +156,13 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Rectangle
-        Grid.Row="1" 
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Fill="DarkGoldenrod"
-    ></Rectangle>
-            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                Grid.Row="1" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Fill="DarkGoldenrod"
+             ></Rectangle>
+            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                     TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <TextBlock
                     VerticalAlignment="Center"
                     TextAlignment="Left"
@@ -157,7 +172,8 @@
                 ></TextBlock>
             </Viewbox>
 
-            <Viewbox HorizontalAlignment="Left" Stretch="Fill">
+            <Viewbox HorizontalAlignment="Left" Stretch="Fill" 
+                     TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
                 </ListView>
             </Viewbox>
@@ -177,14 +193,20 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Row="2" >
-                <Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
+            <Viewbox Grid.Row="2">
+                <!--<Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
                     FontStyle="Italic" Foreground="CadetBlue"
                     HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
                     BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"
                     Content="Evento Actual" Height="446" Width="617"
                     >
-                </Button>
+                </Button>-->
+                <Grid>
+                    <Button CornerRadius="10" Background="Transparent" BorderBrush="Transparent" Margin="90,0,0,0">
+                        <Image HorizontalAlignment="Center" Source="Assets/Evento.png" VerticalAlignment="Center" Stretch="None"/>
+                    </Button>
+                    <TextBlock Text="Evento" FontSize="100" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="100,0,0,0"/>
+                </Grid>
             </Viewbox>
 
 

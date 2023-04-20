@@ -67,5 +67,10 @@ namespace Hito5
         {
 
         }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
