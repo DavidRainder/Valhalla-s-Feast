@@ -10,11 +10,11 @@
 
     <Page.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
         </Style>
 
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
             <Setter Property="Background" Value="LightBlue"></Setter>
             <Setter Property="BorderBrush" Value="AliceBlue"></Setter>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
@@ -22,19 +22,20 @@
         </Style>
         <DataTemplate x:Key="MISSION_MENU_ITEM">
             <StackPanel Width="350">
-                <TextBlock Text="Mision" FontSize="14" FontFamily="Metal Mania"></TextBlock>
+                <TextBlock Text="Mision" FontSize="14" FontFamily="{StaticResource Fuente}"></TextBlock>
                 <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top" CornerRadius="20"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="SKOL_ITEM_MENU">
             <Grid Width="350" Height="30">
-                <Rectangle Fill="AliceBlue" HorizontalAlignment="Left" Height="30" Width="250" RadiusX="20" RadiusY="20" Margin="10,0,0,0"/>
+                <Rectangle Fill="AliceBlue" HorizontalAlignment="Left" Height="30" Width="250" RadiusX="20" RadiusY="20" 
+                           Margin="10,0,0,0"/>
                 <StackPanel Orientation="Horizontal" >
                     <Border Margin="3,0" CornerRadius="15" BorderBrush="Black" BorderThickness="2">
                         <Image Source="Assets/SkolProfile.png" Width="30" Height="30"></Image>
                     </Border>
                     <TextBlock Margin="7,0" Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center" 
-                               FontFamily="Metal Mania" ></TextBlock>
+                               FontFamily="{StaticResource Fuente}"></TextBlock>
 
                 </StackPanel>
             </Grid>
@@ -54,13 +55,15 @@
                     <Image Source="Assets/Deck.png" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                 </Border>
                 <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="Metal Mania"/>
+                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="{StaticResource Fuente}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
     <!--Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"-->
 
     <Grid>
+        <Grid>
+            
         <Grid.Background>
             <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
         </Grid.Background>
@@ -93,33 +96,43 @@
             </StackPanel>
         </Viewbox>
         <!--Usuario-->
-        <StackPanel Orientation="Horizontal" Padding="10" Height="92" Grid.Column="1">
-            <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
+        <ContentControl IsTabStop="True"
+                        Grid.Column="1" UseSystemFocusVisuals="True" 
+                        Margin="0,0,115,0">
+            <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
+                    IsTapEnabled="True" TabFocusNavigation="Once">
+                <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
 
-                <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
-            </Border>
-            <Grid Height="50" Margin="20,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
-                        RadiusX="15" RadiusY="20"/>
-                <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
-                <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
-                            CornerRadius="10"></ProgressBar>
-                <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
-                    <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
+                    <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
                 </Border>
-                <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
-            </Grid>
-        </StackPanel>
+                <Grid Height="50" Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
+                        RadiusX="15" RadiusY="20"/>
+                    <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                    <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
+                            CornerRadius="10"></ProgressBar>
+                    <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
+                        <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
+                    </Border>
+                    <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </ContentControl>
 
         <!--Opciones-->
-        <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
-            <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
-        </Viewbox>
-        <!--Fila de botones-->
+            <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
+                <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
+                    <Button Click="Show_Ajustes_Menu" 
+                        Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+                    </Button>
+                </ContentControl>
+            </Viewbox>
+            <!--Fila de botones-->
         <Grid Grid.Row="1"  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -178,11 +191,11 @@
                 ></TextBlock>
             </Viewbox>
 
-            <Viewbox HorizontalAlignment="Left" Stretch="Fill">
+            <Viewbox HorizontalAlignment="Left" Stretch="Fill"  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
                 </ListView>
             </Viewbox>
-            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill">
+            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill"  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}">
                 </ListView>
             </Viewbox>
@@ -204,13 +217,22 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="110,0,0,0" Grid.ColumnSpan="2">
-                <Image Source="Assets/Search.png" Width="30"></Image>
-                <Image Source="Assets/Filters.png" Width="30" Margin="10,0"></Image>
+                <Button Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="Assets/Search.png" Width="30"></Image>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="Assets/Filters.png" Width="30" Margin="10,0"></Image>
+                </Button>
             </StackPanel>
-            <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2"  
+                  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="628*"/>
+                </Grid.ColumnDefinitions>
                 <GridView ItemsSource="123456789ABCDEF"
                     x:Name="StyledGrid"
-                    ItemTemplate="{StaticResource Deck}">
+                    ItemTemplate="{StaticResource Deck}" Grid.ColumnSpan="2">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="13, 9, 13, 9"/>
@@ -227,24 +249,49 @@
             </Grid>
             <Viewbox Grid.Column="3" Grid.Row="1">
                 <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Viewbox Margin="10, 120" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <StackPanel>
-                        <Button Content="MAZOS" Margin="10" Width="200" CornerRadius="20"></Button>
-                        <Button Content="CARTAS" Margin="10" CornerRadius="20"></Button>
-                    </StackPanel>
-                </Viewbox>
-                    
-                <Viewbox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,120" >
-                    <StackPanel>
-                        <Button CornerRadius="20" Content="EDITAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Width="150" Height="70" Click="EditarMazo_Page"/>
-                    </StackPanel>
-                </Viewbox>
-            </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Viewbox Margin="10, 120" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"  
+                             TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                        <StackPanel>
+                            <Button Content="MAZOS" Margin="10" Width="200" CornerRadius="20"></Button>
+                            <Button Content="CARTAS" Margin="10" CornerRadius="20"></Button>
+                        </StackPanel>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,120" >
+                        <StackPanel>
+                            <Button CornerRadius="20" Content="EDITAR" FontSize="30" Background="Orange" 
+                                BorderBrush="DarkOrange" Width="150" Height="70" Click="EditarMazo_Page"/>
+                        </StackPanel>
+                    </Viewbox>
+                </Grid>
             </Viewbox>
         </Grid>
     </Grid>
+        <Border Background="Black" Opacity="0.4"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+        </Border>
+        <Border Width="1000" Height="600" Background="BurlyWood" CornerRadius="30"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+            <Grid>
+                <TextBlock Text="Ajustes" HorizontalAlignment="Center" FontSize="50"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                            Width="600" Height="70"
+                            Orientation="Horizontal"
+                            Margin="0,0,0,20">
+                    <Button Content="Save" CornerRadius="10" Width="100" FontSize="30"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Cancel" CornerRadius="10" Width="100" FontSize="30"
+                            Margin="90,0,0,0"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Exit Game" CornerRadius="10" Width="130" FontSize="30"
+                            Margin="180,0,0,0"
+                            Click="Exit_Game"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        </Grid>
 </Page>

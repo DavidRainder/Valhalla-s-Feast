@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,11 +21,16 @@ namespace Hito5
     /// <summary>
     /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
     /// </summary>
-    public sealed partial class Partida : Page
+    public sealed partial class Partida : Page, INotifyPropertyChanged
     {
+        Visibility ajustesVisibility;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
         public Partida()
         {
             this.InitializeComponent();
+            ajustesVisibility = Visibility.Collapsed;
         }
 
         public void ActualizaIU()
@@ -39,6 +45,26 @@ namespace Hito5
         private void Ajustes_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Visible;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
+        }
+        private void Quit_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Collapsed;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
         }
 
     }

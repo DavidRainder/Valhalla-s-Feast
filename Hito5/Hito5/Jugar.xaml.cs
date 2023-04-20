@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,11 +22,15 @@ namespace Hito5.Assets
     /// <summary>
     /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
     /// </summary>
-    public sealed partial class Jugar : Page
+    public sealed partial class Jugar : Page, INotifyPropertyChanged
     {
+        Visibility ajustesVisibility;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public Jugar()
         {
             this.InitializeComponent();
+            ajustesVisibility = Visibility.Collapsed;
         }
         public void ActualizaIU()
         {
@@ -63,6 +68,21 @@ namespace Hito5.Assets
         private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+        private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Visible;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
+        }
+        private void Quit_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Collapsed;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
+        }
+
+        private void Exit_Game(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }

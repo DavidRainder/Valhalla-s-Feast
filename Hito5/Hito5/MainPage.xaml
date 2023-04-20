@@ -40,176 +40,203 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="3"></Rectangle>
-        <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2"></Rectangle>
-        <Rectangle Grid.Column="1" Grid.Row="1" Fill="CadetBlue" Opacity="0.5" Grid.RowSpan="4"></Rectangle>
-        <!--Título-->
-        <Viewbox HorizontalAlignment="Left" Margin="0,-16,0,5" Grid.RowSpan="2" Width="368">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Valhalla Feast" FontSize="50" VerticalAlignment="Center"
-                        Foreground="Black" FontWeight="ExtraLight" Padding="50" SelectionChanged="TextBlock_SelectionChanged" ></TextBlock>
-                <Image Source="Assets/Axe.png" Width="70" Margin="-40"></Image>
-            </StackPanel>
-        </Viewbox>
-        <!--Dinero-->
-        <Viewbox HorizontalAlignment="Right">
-            <StackPanel Orientation="Horizontal" Padding="20">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="3"></Rectangle>
+            <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2"></Rectangle>
+            <Rectangle Grid.Column="1" Grid.Row="1" Fill="CadetBlue" Opacity="0.5" Grid.RowSpan="4"></Rectangle>
+            <!--Título-->
+            <Viewbox HorizontalAlignment="Left" Margin="0,-16,0,5" Grid.RowSpan="2" Width="368">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Valhalla Feast" FontSize="50" VerticalAlignment="Center"
+                            Foreground="Black" FontWeight="ExtraLight" Padding="50"></TextBlock>
+                    <Image Source="Assets/Axe.png" Width="70" Margin="-40"></Image>
+                </StackPanel>
+            </Viewbox>
+            <!--Dinero-->
+            <Viewbox HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Padding="20">
                     <Image Source="Assets/MoneyShard.png" Width="25" Height="28" VerticalAlignment="Bottom"></Image>
                     <TextBlock Text="XXXX" FontSize="20" VerticalAlignment="Bottom"
-                        Foreground="Black" FontWeight="ExtraLight">
-                    <TextBlock.FocusVisualPrimaryBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBlock.FocusVisualPrimaryBrush></TextBlock>
-            </StackPanel>
-        </Viewbox>
-        <!--Usuario-->
-        <ContentControl IsTabStop="True" TabIndex="2"
-                        Grid.Column="1" UseSystemFocusVisuals="True" 
-                        Margin="0,0,115,0">
-            <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
-                    IsTapEnabled="True" TabFocusNavigation="Once">
-            <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
+                            Foreground="Black" FontWeight="ExtraLight">
+                        <TextBlock.FocusVisualPrimaryBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.FocusVisualPrimaryBrush></TextBlock>
+                </StackPanel>
+            </Viewbox>
+            <!--Usuario-->
+            <ContentControl IsTabStop="True"
+                            Grid.Column="1" UseSystemFocusVisuals="True" 
+                            Margin="0,0,115,0">
+                <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
+                        IsTapEnabled="True" TabFocusNavigation="Once">
+                    <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
 
-                <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
-            </Border>
-            <Grid Height="50" Margin="20,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
-                        RadiusX="15" RadiusY="20"/>
-                <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
-                <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
-                            CornerRadius="10"></ProgressBar>
-                <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
-                    <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
-                </Border>
-                <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
-            </Grid>
-        </StackPanel>
-        </ContentControl>
-        
-        <!--Opciones-->
-        <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
-            <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
-                <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+                        <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
+                    </Border>
+                    <Grid Height="50" Margin="20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"></RowDefinition>
+                            <RowDefinition Height="4*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
+                            RadiusX="15" RadiusY="20"/>
+                        <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                        <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
+                                CornerRadius="10"></ProgressBar>
+                        <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
+                            <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
+                        </Border>
+                        <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
+                    </Grid>
+                </StackPanel>
             </ContentControl>
-        </Viewbox>
-        <!--Fila de botones-->
-        <Grid Grid.Row="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Viewbox Grid.Column="0" Stretch="Fill">
-                <Button Width="280" Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"
-                        ></Button>
+
+            <!--Opciones-->
+            <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
+                <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
+                    <Button Click="Show_Ajustes_Menu" 
+                        Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+                    </Button>
+                </ContentControl>
             </Viewbox>
-            <Viewbox Grid.Column="1" Stretch="Fill">
-                <Button Width="280" Grid.Column="1" Content="JUGAR" Click="Jugar_Page" FontSize="20"></Button>
-            </Viewbox>
-            <Viewbox Grid.Column="2" Stretch="Fill">
-                <Button Grid.Column="2" Content="BANQUETE" Click="Banquete_Page" FontSize="20" Width="280" ></Button>
-            </Viewbox>
-            <Viewbox Grid.Column="3" Stretch="Fill">
-                <Button Grid.Column="3" Content="TIENDA" Click="Tienda_Page" FontSize="20" Width="280" ></Button>
-            </Viewbox>
-        </Grid>
-        <!--Misiones-->
-        <Rectangle
-        Grid.Column="1" Grid.Row="1" 
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        Fill="DarkGoldenrod"
-    ></Rectangle>
-        <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <TextBlock
-            TextAlignment="Left"
-            Padding="30"
-            FontSize="50"
-            Text="MISIONES"
-            ></TextBlock>
-        </Viewbox>
-        <!--Misiones y Sköl-->
-        <Grid Grid.Row="2" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="0.2*"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+            <!--Fila de botones-->
+            <Grid Grid.Row="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button Width="280" Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"
+                            ></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Stretch="Fill">
+                    <Button x:Name="BotonInicio" Width="280" Grid.Column="1" Content="JUGAR" Click="Jugar_Page" FontSize="20"></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Stretch="Fill">
+                    <Button Grid.Column="2" Content="BANQUETE" Click="Banquete_Page" FontSize="20" Width="280" ></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Stretch="Fill">
+                    <Button Grid.Column="3" Content="TIENDA" Click="Tienda_Page" FontSize="20" Width="280" ></Button>
+                </Viewbox>
+            </Grid>
+            <!--Misiones-->
             <Rectangle
-                Grid.Row="1" 
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Fill="DarkGoldenrod"
-             ></Rectangle>
-            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                     TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+            Grid.Column="1" Grid.Row="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Fill="DarkGoldenrod"
+        ></Rectangle>
+            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <TextBlock
-                    VerticalAlignment="Center"
-                    TextAlignment="Left"
-                    Padding="30"
-                    FontSize="50"
-                    Text="SKÖL"
+                TextAlignment="Left"
+                Padding="30"
+                FontSize="50"
+                Text="MISIONES"
                 ></TextBlock>
             </Viewbox>
+            <!--Misiones y Sköl-->
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Rectangle
+                    Grid.Row="1" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="DarkGoldenrod"
+                 ></Rectangle>
+                <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                         TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        TextAlignment="Left"
+                        Padding="30"
+                        FontSize="50"
+                        Text="SKÖL"
+                    ></TextBlock>
+                </Viewbox>
 
-            <Viewbox HorizontalAlignment="Left" Stretch="Fill" 
-                     TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
-                <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
-                </ListView>
-            </Viewbox>
-            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill">
-                <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}" SelectionChanged="ListView_SelectionChanged">
-                </ListView>
-            </Viewbox>
+                <Viewbox HorizontalAlignment="Left" Stretch="Fill" 
+                         TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
+                    <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
+                    </ListView>
+                </Viewbox>
+                <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill">
+                    <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}" SelectionChanged="ListView_SelectionChanged">
+                    </ListView>
+                </Viewbox>
+            </Grid>
+
+            <!--Menú INICIO-->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Row="2">
+                    <!--<Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
+                        FontStyle="Italic" Foreground="CadetBlue"
+                        HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                        BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"
+                        Content="Evento Actual" Height="446" Width="617"
+                        >
+                    </Button>-->
+                    <Grid>
+                        <Button CornerRadius="100" Background="Transparent" BorderBrush="Transparent" Margin="90,0,0,0">
+                            <Image HorizontalAlignment="Center" Source="Assets/Evento.png" VerticalAlignment="Center" Stretch="None"/>
+                        </Button>
+                        <TextBlock Text="Evento" FontSize="100" HorizontalAlignment="Left"  
+                                   VerticalAlignment="Bottom" Margin="150,0,0,0"/>
+                    </Grid>
+                </Viewbox>
+
+            </Grid>
         </Grid>
-
-        <!--Menú INICIO-->
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Viewbox Grid.Row="2">
-                <!--<Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
-                    FontStyle="Italic" Foreground="CadetBlue"
-                    HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
-                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"
-                    Content="Evento Actual" Height="446" Width="617"
-                    >
-                </Button>-->
-                <Grid>
-                    <Button CornerRadius="10" Background="Transparent" BorderBrush="Transparent" Margin="90,0,0,0">
-                        <Image HorizontalAlignment="Center" Source="Assets/Evento.png" VerticalAlignment="Center" Stretch="None"/>
-                    </Button>
-                    <TextBlock Text="Evento" FontSize="100" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="100,0,0,0"/>
-                </Grid>
-            </Viewbox>
-
-
-        </Grid>
+        <Border Background="Black" Opacity="0.4"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+        </Border>
+        <Border Width="1000" Height="600" Background="BurlyWood" CornerRadius="30"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+            <Grid>
+                <TextBlock Text="Ajustes" HorizontalAlignment="Center" FontSize="50"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                            Width="600" Height="70"
+                            Orientation="Horizontal"
+                            Margin="0,0,0,20">
+                    <Button Content="Save" CornerRadius="10" Width="100" FontSize="30"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Cancel" CornerRadius="10" Width="100" FontSize="30"
+                            Margin="90,0,0,0"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Exit Game" CornerRadius="10" Width="130" FontSize="30"
+                            Margin="180,0,0,0"
+                            Click="Exit_Game"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

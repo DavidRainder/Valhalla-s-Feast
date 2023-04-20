@@ -10,11 +10,11 @@
 
     <Page.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
         </Style>
         <DataTemplate x:Key="MISSION_MENU_ITEM">
             <StackPanel Width="350">
-                <TextBlock Text="Mision" FontSize="14" FontFamily="Metal Mania"></TextBlock>
+                <TextBlock Text="Mision" FontSize="14" FontFamily="{StaticResource Fuente}"></TextBlock>
                 <ProgressBar Height="20" Value="44" Foreground="LightBlue" VerticalAlignment="Top" CornerRadius="20"/>
             </StackPanel>
         </DataTemplate>
@@ -26,7 +26,7 @@
                         <Image Source="Assets/SkolProfile.png" Width="30" Height="30"></Image>
                     </Border>
                     <TextBlock Margin="7,0" Text="USUARIO" Foreground="DarkGray" VerticalAlignment="Center" 
-                               FontFamily="Metal Mania" ></TextBlock>
+                               FontFamily="{StaticResource Fuente}" ></TextBlock>
 
                 </StackPanel>
             </Grid>
@@ -45,12 +45,12 @@
                     <Image Source="Assets/Deck.png" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                 </Border>
                     <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="Metal Mania"/>
+                           HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="{StaticResource Fuente}"/>
             </Grid>
         </DataTemplate>
 
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Metal Mania"></Setter>
+            <Setter Property="FontFamily" Value="{StaticResource Fuente}"></Setter>
             <Setter Property="Background" Value="LightBlue"></Setter>
             <Setter Property="BorderBrush" Value="AliceBlue"></Setter>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
@@ -58,7 +58,8 @@
         </Style>
     </Page.Resources>
 <!--Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"-->
-    
+    <Grid>
+        
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
@@ -92,7 +93,7 @@
             </StackPanel>
         </Viewbox>
         <!--Usuario-->
-        <ContentControl IsTabStop="True" TabIndex="2"
+        <ContentControl IsTabStop="True"
                         Grid.Column="1" UseSystemFocusVisuals="True" 
                         Margin="0,0,115,0">
             <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
@@ -120,12 +121,15 @@
         </ContentControl>
 
         <!--Opciones-->
-        <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
-            <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
-                <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
-            </ContentControl>
-        </Viewbox>
-        <!--Fila de botones-->
+            <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
+                <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
+                    <Button Click="Show_Ajustes_Menu" 
+                        Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+                    </Button>
+                </ContentControl>
+            </Viewbox>
+            <!--Fila de botones-->
         <Grid Grid.Row="1 "  TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -190,7 +194,7 @@
                 <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
                 </ListView>
             </Viewbox>
-            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill">
+            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                 <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}">
                 </ListView>
             </Viewbox>
@@ -258,5 +262,28 @@
                 </Grid>
             </Viewbox>
         </Grid>
+    </Grid>
+        <Border Background="Black" Opacity="0.4"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+        </Border>
+        <Border Width="1000" Height="600" Background="BurlyWood" CornerRadius="30"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+            <Grid>
+                <TextBlock Text="Ajustes" HorizontalAlignment="Center" FontSize="50"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                            Width="600" Height="70"
+                            Orientation="Horizontal"
+                            Margin="0,0,0,20">
+                    <Button Content="Save" CornerRadius="10" Width="100" FontSize="30"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Cancel" CornerRadius="10" Width="100" FontSize="30"
+                            Margin="90,0,0,0"
+                            Click="Quit_Ajustes_Menu"/>
+                    <Button Content="Exit Game" CornerRadius="10" Width="130" FontSize="30"
+                            Margin="180,0,0,0"
+                            Click="Exit_Game"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

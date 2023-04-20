@@ -1,6 +1,7 @@
 ﻿using Hito5.Assets;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,11 +23,15 @@ namespace Hito5
     /// <summary>
     /// Una página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
     /// </summary>
-    public sealed partial class Banquete : Page
+    public sealed partial class Banquete : Page, INotifyPropertyChanged
     {
+        Visibility ajustesVisibility;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Banquete()
         {
             this.InitializeComponent();
+            ajustesVisibility = Visibility.Collapsed;
         }
         public void ActualizaIU()
         {
@@ -56,6 +61,21 @@ namespace Hito5
         {
             Frame.Navigate(typeof(EditarMazo), null, new SuppressNavigationTransitionInfo());
 
+        }
+        private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Visible;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
+        }
+        private void Quit_Ajustes_Menu(object sender, RoutedEventArgs e)
+        {
+            ajustesVisibility = Visibility.Collapsed;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ajustesVisibility)));
+        }
+
+        private void Exit_Game(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }
