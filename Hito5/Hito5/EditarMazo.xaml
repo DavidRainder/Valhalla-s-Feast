@@ -265,27 +265,45 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <Button CornerRadius="20" Background="Orange" BorderBrush="DarkOrange" Grid.Column="0" Content="GUARDAR" Width="120" Height="50"></Button>
-                <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Grid.Column="1" Content="TODAS" Width="100" Height="40"></Button>
-                <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Grid.Column="2" Content="REGIÓN" Width="100" Height="40"></Button>
-                <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Grid.Column="3" Content="EN PROPIEDAD" Width="120" Height="40"></Button>
+                <Viewbox Grid.Column="0">
+                    <Button CornerRadius="20" Background="Orange" BorderBrush="DarkOrange" Content="GUARDAR" Width="120" Height="50"></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+                    <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Content="TODAS" Width="100" Height="40"></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="2">
+                    <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Content="REGIÓN" Width="100" Height="40"></Button>
+                </Viewbox>
+                <Viewbox Grid.Column="3">
+                    <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Content="EN PROPIEDAD" Width="120" Height="40"></Button>
+                </Viewbox>
             </Grid>
-            <Rectangle Grid.Row="1" Fill="AliceBlue" Margin="30"></Rectangle>
-            <Rectangle Grid.Row="1" Fill="DarkOrange" Height="110" VerticalAlignment="Top" Margin="50"></Rectangle>
+            <Viewbox Grid.Row="1" Stretch="Fill">
+                    <Rectangle Margin="5" Fill="AliceBlue" Width="100" Height="100"></Rectangle>
+            </Viewbox>
             <StackPanel Grid.Row="1" Orientation ="Vertical" Margin="30">
                 <StackPanel Orientation="Horizontal" Height="145">
                     <Border Margin="30, 0" CornerRadius="100" BorderBrush="OrangeRed" BorderThickness="4" Height="100" Width="100">
                         <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="100" Height="100"/>
                     </Border>
-                    <TextBlock Text="LÍDER" FontSize="50" FontStyle="Italic" 
+                    <Viewbox Width="186" Height="100">
+                        <TextBlock Text="LÍDER" FontSize="10" FontStyle="Italic" 
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
                                Foreground="Black"></TextBlock>
+                    </Viewbox>
                 </StackPanel>
-                <ListView ItemTemplate="{StaticResource Card_List}" ItemsSource="1234567" MaxHeight="380">
-                </ListView>
-                <TextBlock Text="7/60" HorizontalAlignment="Right"
+                <Viewbox>
+                    <StackPanel>
+                    <Viewbox>
+                    <ListView ItemTemplate="{StaticResource Card_List}" ItemsSource="1234567" MaxHeight="380" Height="247">
+                    </ListView>
+                </Viewbox>
+                    <Viewbox>
+                    <TextBlock Text="7/60" HorizontalAlignment="Right"
                            Foreground="Black" FontSize="23" Margin="30,5"></TextBlock>
+                </Viewbox>
+                </StackPanel>
+                </Viewbox>
             </StackPanel>
         </Grid>
 
