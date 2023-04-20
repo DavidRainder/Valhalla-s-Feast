@@ -28,8 +28,13 @@ namespace Hito5
         Visibility ajustesVisibility;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        List<VMCard> cartas = new List<VMCard>();
         public EditarMazo()
         {
+            foreach (Card card_ in Model.Cartas)
+            {
+                cartas.Add(new VMCard(card_));
+            }
             this.InitializeComponent();
             ajustesVisibility = Visibility.Collapsed;
         }
@@ -58,7 +63,7 @@ namespace Hito5
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
 
-        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AddToDeckList(object sender, ItemClickEventArgs e)
         {
 
         }

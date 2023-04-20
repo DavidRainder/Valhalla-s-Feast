@@ -122,6 +122,7 @@
     <Compile Include="Banquete.xaml.cs">
       <DependentUpon>Banquete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Card.cs" />
     <Compile Include="Controlador.cs" />
     <Compile Include="EditarMazo.xaml.cs">
       <DependentUpon>EditarMazo.xaml</DependentUpon>
