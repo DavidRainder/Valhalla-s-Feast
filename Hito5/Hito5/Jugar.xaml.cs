@@ -50,19 +50,14 @@ namespace Hito5.Assets
         {
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Editar_Page(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(EditarMazo), null, new SuppressNavigationTransitionInfo());
         }
+
         private void Partida_Page(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Partida));
-        }
-
-        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

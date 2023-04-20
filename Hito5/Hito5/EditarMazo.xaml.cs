@@ -24,8 +24,13 @@ namespace Hito5
     /// </summary>
     public sealed partial class EditarMazo : Page
     {
+        List<VMCard> cartas = new List<VMCard>();
         public EditarMazo()
         {
+            foreach (Card card_ in Model.Cartas)
+            {
+                cartas.Add(new VMCard(card_));
+            }
             this.InitializeComponent();
         }
 
@@ -53,7 +58,7 @@ namespace Hito5
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
 
-        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AddToDeckList(object sender, ItemClickEventArgs e)
         {
 
         }
