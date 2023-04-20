@@ -39,7 +39,6 @@
             <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
         </Style>
     </Page.Resources>
-
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/Background.png"></ImageBrush>
@@ -53,26 +52,29 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
         <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="3"></Rectangle>
         <Rectangle Fill="CadetBlue" Opacity="0.5" Grid.ColumnSpan="2"></Rectangle>
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="CadetBlue" Opacity="0.5" Grid.RowSpan="4"></Rectangle>
         <!--Título-->
-
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Valhalla Feast" FontSize="50" VerticalAlignment="Center"
-                    Foreground="Black" FontWeight="ExtraLight" Padding="50" ></TextBlock>
-            <Image Source="Assets/Axe.png" Width="70" Margin="-40"></Image>
-        </StackPanel>
+        <Viewbox HorizontalAlignment="Left" Margin="0,-16,0,5" Grid.RowSpan="2" Width="368">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Valhalla Feast" FontSize="50" VerticalAlignment="Center"
+                        Foreground="Black" FontWeight="ExtraLight" Padding="50" ></TextBlock>
+                <Image Source="Assets/Axe.png" Width="70" Margin="-40"></Image>
+            </StackPanel>
+        </Viewbox>
         <!--Dinero-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="30">
-            <Image Source="Assets/MoneyShard.png" Width="25" Height="28" VerticalAlignment="Bottom"></Image>
-            <TextBlock Text="XXXX" FontSize="20" VerticalAlignment="Bottom"
-                    Foreground="Black" FontWeight="ExtraLight"></TextBlock>
-        </StackPanel>
+        <Viewbox HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" Padding="20">
+                    <Image Source="Assets/MoneyShard.png" Width="25" Height="28" VerticalAlignment="Bottom"></Image>
+                    <TextBlock Text="XXXX" FontSize="20" VerticalAlignment="Bottom"
+                        Foreground="Black" FontWeight="ExtraLight"></TextBlock>
+            </StackPanel>
+        </Viewbox>
         <!--Usuario-->
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Padding="10">
+        <StackPanel Orientation="Horizontal" Padding="10" Height="92" Grid.Column="1">
             <Border CornerRadius="100" BorderBrush="LightBlue" BorderThickness="4" Height="70" Width="70">
+
                 <Image Source="Assets/UserProfile.png" VerticalAlignment="Center" Width="70" Height="70"/>
             </Border>
             <Grid Height="50" Margin="20,0">
@@ -81,18 +83,21 @@
                     <RowDefinition Height="4*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Rectangle Fill="AliceBlue" Width="150" Height="25" VerticalAlignment="Center" 
-                           RadiusX="15" RadiusY="20"/>
+                        RadiusX="15" RadiusY="20"/>
                 <TextBlock Foreground="DarkGray" Text="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
                 <ProgressBar Grid.Row="1" Value="44" Foreground="Orange" Height="15"
-                             CornerRadius="10"></ProgressBar>
+                            CornerRadius="10"></ProgressBar>
                 <Border Margin="1.5, -1"  Grid.Row="1" CornerRadius="10" BorderBrush="AntiqueWhite" BorderThickness="1" HorizontalAlignment="Right"  Width="20" >
                     <Rectangle Fill="DarkRed" Height="25" Width="20" VerticalAlignment="Center" Margin="0,0,-2,0"/>
                 </Border>
                 <TextBlock Grid.Row="1" Foreground="Orange" Text="XX" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5"></TextBlock>
             </Grid>
         </StackPanel>
+
         <!--Opciones-->
-        <Image Grid.Column="1" Source="Assets/Settings.png" Width="50" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10"></Image>
+        <Viewbox Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Height="67" Width="61">
+            <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
+        </Viewbox>
         <!--Fila de botones-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -101,10 +106,18 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"></Button>
-            <Button Grid.Column="1" Content="JUGAR" Click="Jugar_Page" FontSize="20" ></Button>
-            <Button Grid.Column="2" Content="BANQUETE" Click="Banquete_Page" FontSize="20" ></Button>
-            <Button Grid.Column="3" Content="TIENDA" Click="Tienda_Page" FontSize="20" ></Button>
+            <Viewbox Grid.Column="0" Stretch="Fill">
+                <Button Width="280" Grid.Column="0" Content="INICIO" Click="Inicio_Page" FontSize="20"></Button>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Stretch="Fill">
+                <Button Width="280" Grid.Column="1" Content="JUGAR" Click="Jugar_Page" FontSize="20"></Button>
+            </Viewbox>
+            <Viewbox Grid.Column="2" Stretch="Fill">
+                <Button Grid.Column="2" Content="BANQUETE" Click="Banquete_Page" FontSize="20" Width="280" ></Button>
+            </Viewbox>
+            <Viewbox Grid.Column="3" Stretch="Fill">
+                <Button Grid.Column="3" Content="TIENDA" Click="Tienda_Page" FontSize="20" Width="280" ></Button>
+            </Viewbox>
         </Grid>
         <!--Misiones-->
         <Rectangle
@@ -113,13 +126,14 @@
         VerticalAlignment="Stretch"
         Fill="DarkGoldenrod"
     ></Rectangle>
-        <TextBlock
-        VerticalAlignment="Center"
-        TextAlignment="Left"
-        Padding="30"
-        Text="MISIONES"
-        Grid.Column="1" Grid.Row="1" 
-        ></TextBlock>
+        <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock
+            TextAlignment="Left"
+            Padding="30"
+            FontSize="50"
+            Text="MISIONES"
+            ></TextBlock>
+        </Viewbox>
         <!--Misiones y Sköl-->
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -133,17 +147,24 @@
         VerticalAlignment="Stretch"
         Fill="DarkGoldenrod"
     ></Rectangle>
-            <TextBlock
-        VerticalAlignment="Center"
-        TextAlignment="Left"
-        Padding="30"
-        Text="SKÖL"
-        Grid.Row="1" 
-        ></TextBlock>
-            <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}">
-            </ListView>
-            <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}" SelectionChanged="ListView_SelectionChanged">
-            </ListView>
+            <Viewbox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    TextAlignment="Left"
+                    Padding="30"
+                    FontSize="50"
+                    Text="SKÖL"
+                ></TextBlock>
+            </Viewbox>
+
+            <Viewbox HorizontalAlignment="Left" Stretch="Fill">
+                <ListView Grid.Row="0" Padding="10" ItemsSource="1223456789ABCDEFGHIJK" ItemTemplate="{StaticResource MISSION_MENU_ITEM}" Height="569" Width="397">
+                </ListView>
+            </Viewbox>
+            <Viewbox Grid.Row="2" HorizontalAlignment="Left" Stretch="UniformToFill">
+                <ListView Grid.Row="2" Padding="10" ItemsSource="1234567890" ItemTemplate="{StaticResource SKOL_ITEM_MENU}" SelectionChanged="ListView_SelectionChanged">
+                </ListView>
+            </Viewbox>
         </Grid>
 
         <!--Menú INICIO-->
@@ -156,13 +177,16 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Margin="40"  CornerRadius="20" Grid.Column="0" Grid.Row="2" FontSize="45"
+            <Viewbox Grid.Row="2" >
+                <Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
                     FontStyle="Italic" Foreground="CadetBlue"
                     HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
                     BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"
-                    Content="Evento Actual"
+                    Content="Evento Actual" Height="446" Width="617"
                     >
-            </Button>
+                </Button>
+            </Viewbox>
+
 
         </Grid>
     </Grid>
