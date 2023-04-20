@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.PlayTo;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,8 +30,12 @@ namespace Hito5
         public event PropertyChangedEventHandler PropertyChanged;
 
         List<VMCard> cartas = new List<VMCard>();
+        // Dictionary<int, Dictionary<VMCard, int>> decks = new Dictionary<int, Dictionary<VMCard, int>>();
+        Dictionary<VMCard, int> currentDeck = new Dictionary<VMCard, int>();
+        int currentDeckIndex = 0;
         public EditarMazo()
         {
+
             foreach (Card card_ in Model.Cartas)
             {
                 cartas.Add(new VMCard(card_));
@@ -39,6 +44,10 @@ namespace Hito5
             ajustesVisibility = Visibility.Collapsed;
         }
 
+        private void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // currentDeck = decks[int.Parse(e.ToString())];
+        }
         public void ActualizaIU()
         {
 
@@ -63,9 +72,40 @@ namespace Hito5
             Frame.Navigate(typeof(Tienda), null, new SuppressNavigationTransitionInfo());
         }
 
-        private void AddToDeckList(object sender, ItemClickEventArgs e)
+        public void AddToDeckList(object sender, ItemClickEventArgs e)
         {
+            VMCard card_ = e.ClickedItem as VMCard;
+            if (!currentDeck.ContainsKey(card_)) {
+                card_.Quantity = 1;
+                currentDeck.Add(card_, card_.Quantity); 
+            }
+            else {
+                card_.Quantity++;
+                currentDeck[card_]++;
+            }
+            Dictionary<VMCard, int> newMap = new Dictionary<VMCard, int>();
+            List<VMCard> newList = new List<VMCard>();
+            foreach(KeyValuePair<VMCard, int> card in currentDeck) {
+                newList.Add(card.Key);
+            }
+            CurrentDeck.ItemsSource = newList;
+        }
 
+        private void RemoveCardFromList(object sender, ItemClickEventArgs e)
+        {
+            VMCard card_ = e.ClickedItem as VMCard;
+            card_.Quantity--;
+            if (card_.Quantity <= 0)
+            {
+                currentDeck.Remove(card_);
+            }
+            else currentDeck[card_]--;
+            List<VMCard> newList = new List<VMCard>();
+            foreach (KeyValuePair<VMCard, int> card in currentDeck)
+            {
+                newList.Add(card.Key);
+            }
+            CurrentDeck.ItemsSource = newList;
         }
         private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
         {
