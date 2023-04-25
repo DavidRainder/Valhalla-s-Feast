@@ -88,7 +88,7 @@
             <Viewbox HorizontalAlignment="Right" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" Padding="20">
                     <Image Source="Assets/MoneyShard.png" Width="38" Height="40" VerticalAlignment="Bottom"></Image>
-                    <TextBlock Text="XXXX" FontSize="30" VerticalAlignment="Bottom" FontStretch="Normal"
+                    <TextBlock Text="{x:Bind dinero}" FontSize="30" VerticalAlignment="Bottom" FontStretch="Normal"
                         Foreground="Black" FontWeight="ExtraLight"></TextBlock>
                 </StackPanel>
             </Viewbox>

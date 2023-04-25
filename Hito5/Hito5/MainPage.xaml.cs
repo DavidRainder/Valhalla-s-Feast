@@ -27,9 +27,9 @@ namespace Hito5
     /// </summary>
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
+        int dinero = Model.Dinero;
         Controlador GameControl = null;
         //Game Loop para el modo InGame.
-        InicioLoop GameLoop = null;
         Visibility ajustesVisibility;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -38,10 +38,8 @@ namespace Hito5
         {
             this.InitializeComponent();
             GameControl = new Controlador();
-            GameLoop = new InicioLoop(this, GameControl);
             BotonInicio.Focus(FocusState.Programmatic);
             ajustesVisibility = Visibility.Collapsed;
-
         }
         public void ActualizaIU()
         {

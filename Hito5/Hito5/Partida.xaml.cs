@@ -25,7 +25,8 @@ namespace Hito5
     {
         Visibility ajustesVisibility;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        VMDeck deck;
+        List<VMCard> manoActual = new List<VMCard>();
 
         public Partida()
         {
@@ -37,25 +38,21 @@ namespace Hito5
         {
 
         }
-        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            deck = e.Parameter as VMDeck;
+            Random r = new Random();
+            for(int i = 0; i < 7; i++)
+            {
+                manoActual.Add(new VMCard(deck.Cartas[r.Next(deck.Cartas.Count)]));
+            }
         }
-
         private void Ajustes_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
         }
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
         {
             ajustesVisibility = Visibility.Visible;

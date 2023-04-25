@@ -25,7 +25,7 @@ namespace Hito5.Assets
     public sealed partial class Jugar : Page, INotifyPropertyChanged
     {
         Visibility ajustesVisibility;
-
+        int dinero = Model.Dinero;
         public event PropertyChangedEventHandler PropertyChanged;
         List<VMDeck> mazos = new List<VMDeck>();
         VMDeck deckSelected = null;
@@ -69,13 +69,14 @@ namespace Hito5.Assets
         }
         private void Editar_Page(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditarMazo), null, new SuppressNavigationTransitionInfo());
+            if(deckSelected != null)
+                Frame.Navigate(typeof(EditarMazo), deckSelected, new SuppressNavigationTransitionInfo());
         }
 
         private void Partida_Page(object sender, RoutedEventArgs e)
         {
             if(deckSelected != null)
-                Frame.Navigate(typeof(Partida));
+                Frame.Navigate(typeof(Partida), deckSelected, new SuppressNavigationTransitionInfo());
         }
 
         private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)

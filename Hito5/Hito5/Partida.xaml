@@ -11,29 +11,29 @@
         <DataTemplate x:Key="BackCard">
             <Image Source="Assets/DeckBack.png" Width="180" Height="265" VerticalAlignment="Top"/>
         </DataTemplate>
-        <DataTemplate x:Key="Card">
+               <DataTemplate x:Key="GridViewCard" x:DataType="local:VMCard">
             <Grid>
                 <StackPanel Width="198" Height="265">
                     <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                Height="200" Width="180"></Rectangle>
                     <StackPanel Orientation="Horizontal" Margin="9,0">
-                        <Rectangle Fill="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind firstRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
-                        <Rectangle Fill="OrangeRed" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind secondRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
                     </StackPanel>
                 </StackPanel>
-                <Image Source="Assets/Card.png" Width="180" Height="180" Margin="0,10" VerticalAlignment="Top"></Image>
-                <TextBlock Text="Habilidades" Foreground="DarkGray" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" Margin="30,85" FontFamily="{StaticResource Fuente}" FontSize="20" FontStyle="Italic"
+                <Image Source="{x:Bind Imagen}" Width="180" Height="180" Margin="0,10" VerticalAlignment="Top"></Image>
+                <TextBlock Text="{x:Bind Skills}" Foreground="DarkGray" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" FontFamily="Metal Mania" Margin="30,85" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Nombre" Foreground="DarkGray" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" FontFamily="{StaticResource Fuente}" Margin="30,105" FontSize="20" FontStyle="Italic"
+                <TextBlock Text="{x:Bind Nombre}" Foreground="DarkGray" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" FontFamily="Metal Mania" Margin="30,105" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Vida" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
+                <TextBlock Text="{x:Bind Vida}" Foreground="DarkGray" FontFamily="Metal Mania" VerticalAlignment="Bottom"
                            HorizontalAlignment="Left" Margin="30,30" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Daño" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
+                <TextBlock Text="{x:Bind Damage}" Foreground="DarkGray" FontFamily="Metal Mania" VerticalAlignment="Bottom"
                            HorizontalAlignment="Right" Margin="30,30" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
                 <Border CornerRadius="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Height="30" Margin="4,-5,0,0">
@@ -43,7 +43,7 @@
                                Margin="0,-10,0,0"></Rectangle>
 
                 </Border>
-                <TextBlock Text="X" 
+                <TextBlock Text="{x:Bind Mana}" 
                            Width="30" Height="30" FontSize="30"
                            VerticalAlignment="Top" HorizontalAlignment="Left"
                            Margin="14,-7"></TextBlock>
@@ -133,7 +133,7 @@
         <Viewbox Grid.Row="2" >
             <Button Width="100" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" 
                     Background="Transparent" BorderBrush="Transparent"
-                    FocusVisualSecondaryBrush="#FFE35A00" Click="Button_Click" FocusVisualPrimaryBrush="#FFA91212" Foreground="#FF982424">
+                    FocusVisualSecondaryBrush="#FFE35A00" FocusVisualPrimaryBrush="#FFA91212" Foreground="#FF982424">
                 <Image Source="Assets/DeckBack.png" Height="150" Margin="0,0,0,-13" FocusVisualPrimaryBrush="#FFCF7855" FocusVisualSecondaryBrush="#99D13636"/>
             </Button>
         </Viewbox>
@@ -153,8 +153,8 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <TextBlock Text="Acción&#x0a;  del&#x0a;turno" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           FontFamily="{StaticResource Fuente}" FontSize="30" SelectionChanged="TextBlock_SelectionChanged"></TextBlock>
+                    <TextBlock Text="Acción&#x0a;  del&#x0a;turno" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontFamily="{StaticResource Fuente}" FontSize="30"></TextBlock>
             </Grid>
         </Viewbox>
         <!--Hacha-->
@@ -168,7 +168,7 @@
                     IsTabStop="False"
                     ItemsSource="1"
                     x:Name="StyledGrid"
-                    ItemTemplate="{StaticResource Lider}" SelectionChanged="StyledGrid_SelectionChanged" >
+                    ItemTemplate="{StaticResource Lider}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="13, 9, 13, 9"/>
@@ -189,7 +189,7 @@
                     IsTabStop="False"
                     ItemsSource="1"
                     x:Name="StyledGrid2"
-                    ItemTemplate="{StaticResource Lider}" SelectionChanged="StyledGrid_SelectionChanged" >
+                    ItemTemplate="{StaticResource Lider}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="Margin" Value="13, 9, 13, 9"/>
@@ -207,9 +207,10 @@
         <!--Mano Usuario-->
         <Grid Grid.Row="4" Grid.Column="1" TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
             <Viewbox>
-                <GridView ItemsSource="1234"
-                    x:Name="StyledGrid3"
-                    ItemTemplate="{StaticResource Card}"
+                <GridView
+                    x:Name="Mano"
+                    ItemsSource="{x:Bind manoActual}"
+                    ItemTemplate="{StaticResource GridViewCard}"
                           IsTabStop="True">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
@@ -219,7 +220,7 @@
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid x:Name="MaxItemsWrapGrid"
-                           MaximumRowsOrColumns="4"
+                           MaximumRowsOrColumns="7"
                            Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
@@ -250,6 +251,7 @@
             </Viewbox>
         </Grid>
     </Grid>
+<!--
         <Border Background="Black" Opacity="0.4"
                 Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
         </Border>
@@ -272,6 +274,6 @@
                             Click="Ajustes_Click"/>
                 </StackPanel>
             </Grid>
-        </Border>
+        </Border>-->
     </Grid>
 </Page>

@@ -25,6 +25,7 @@ namespace Hito5
     /// </summary>
     public sealed partial class Banquete : Page, INotifyPropertyChanged
     {
+        int dinero = Model.Dinero;
         Visibility ajustesVisibility;
         public event PropertyChangedEventHandler PropertyChanged;
 
