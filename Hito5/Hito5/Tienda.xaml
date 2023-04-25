@@ -31,33 +31,33 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="Store_Card">
+        <DataTemplate x:Key="Store_Card" x:DataType="local:VMCard">
             <Grid>
                 <StackPanel Width="198" Height="265">
                     <Rectangle Fill="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                Height="200" Width="180"></Rectangle>
                     <StackPanel Orientation="Horizontal" Margin="9,0">
-                        <Rectangle Fill="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind firstRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
-                        <Rectangle Fill="OrangeRed" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        <Rectangle Fill="{x:Bind secondRectColor}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    Height="40" Width="90"></Rectangle>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
                         <Image Source="Assets/MoneyShard.png" Margin="0,-3" Width="22"></Image>
-                        <TextBlock Text="XXXX" Foreground="Black" FontFamily="{StaticResource Fuente}"></TextBlock>
+                        <TextBlock Text="{Binding Precio}" Foreground="Black" FontFamily="{StaticResource Fuente}"></TextBlock>
                     </StackPanel>
                 </StackPanel>
-                <Image Source="Assets/Card.png" Width="180" Height="180" Margin="0,10" VerticalAlignment="Top"></Image>
-                <TextBlock Text="Habilidades" Foreground="DarkGray" VerticalAlignment="Bottom"
+                <Image Source="{Binding Imagen}" Width="180" Height="180" Margin="0,10" VerticalAlignment="Top"></Image>
+                <TextBlock Text="{Binding Skills}" Foreground="DarkGray" VerticalAlignment="Bottom"
                            HorizontalAlignment="Center" Margin="30,85" FontFamily="{StaticResource Fuente}" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Nombre" Foreground="DarkGray" VerticalAlignment="Bottom"
+                <TextBlock Text="{Binding Nombre}" Foreground="DarkGray" VerticalAlignment="Bottom"
                            HorizontalAlignment="Center" FontFamily="{StaticResource Fuente}" Margin="30,105" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Vida" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
+                <TextBlock Text="{Binding Vida}" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
                            HorizontalAlignment="Left" Margin="30,30" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Daño" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
+                <TextBlock Text="{Binding Damage}" Foreground="DarkGray" FontFamily="{StaticResource Fuente}" VerticalAlignment="Bottom"
                            HorizontalAlignment="Right" Margin="30,30" FontSize="20" FontStyle="Italic"
                            FontWeight="Bold"></TextBlock>
                 <Border CornerRadius="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Height="30" Margin="4,-5,0,0">
@@ -67,9 +67,9 @@
                                Margin="0,-10,0,0"></Rectangle>
 
                 </Border>
-                <TextBlock Text="X" 
+                <TextBlock Text="{x:Bind Mana}" 
                            Width="30" Height="30" FontSize="30"
-                           VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Metal Mania"
+                           VerticalAlignment="Top" HorizontalAlignment="Left"
                            Margin="14,-7"></TextBlock>
             </Grid>
         </DataTemplate>
@@ -115,7 +115,7 @@
             <Viewbox HorizontalAlignment="Right" Grid.Column="1">
                 <StackPanel Orientation="Horizontal" Padding="20">
                     <Image Source="Assets/MoneyShard.png" Width="38" Height="40" VerticalAlignment="Bottom"></Image>
-                    <TextBlock Text="XXXX" FontSize="30" VerticalAlignment="Bottom" FontStretch="Normal"
+                    <TextBlock Text="{x:Bind dinero, Mode=OneWay}" FontSize="30" VerticalAlignment="Bottom" FontStretch="Normal"
                         Foreground="Black" FontWeight="ExtraLight"></TextBlock>
                 </StackPanel>
             </Viewbox>
@@ -237,7 +237,7 @@
             </Viewbox>
         </Grid>
 
-        <!--Menú Jugar-->
+        <!--Menú Tienda-->
         <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="0,43,375,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"></RowDefinition>
@@ -261,8 +261,10 @@
             </StackPanel>
             <Grid Margin="100,83,100,0" Grid.ColumnSpan="2" Grid.RowSpan="2" 
                   TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
-                <GridView ItemsSource="123456789ABCDEF"
+                <GridView ItemsSource="{x:Bind cartas, Mode=OneWay}"
                     x:Name="StyledGrid"
+                          IsItemClickEnabled="True"
+                          ItemClick="SelectCard"
                     ItemTemplate="{StaticResource Store_Card}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
@@ -295,7 +297,7 @@
                     <Viewbox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,120"
                              TabFocusNavigation="Once" XYFocusKeyboardNavigation="Enabled">
                         <StackPanel>
-                            <Button Margin="0,30" CornerRadius="20" Content="COMPRAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Width="180" Height="70"/>
+                            <Button Margin="0,30" CornerRadius="20" Content="COMPRAR" FontSize="30" Background="Orange" BorderBrush="DarkOrange" Width="180" Height="70" Click="ShopCard"/>
                             <Button Margin="0,10" CornerRadius="10" Content="TODAS" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>
                             <Button Margin="0,10" CornerRadius="10" Content="REGIÓN" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>
                             <Button Margin="0,10" CornerRadius="10" Content="OFERTAS" FontSize="20" Background="DarkOrange" BorderBrush="Orange" Width="100" Height="50"/>

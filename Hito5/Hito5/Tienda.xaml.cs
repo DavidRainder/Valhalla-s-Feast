@@ -25,13 +25,19 @@ namespace Hito5
     /// </summary>
     public sealed partial class Tienda : Page, INotifyPropertyChanged
     {
+        int dinero = Model.Dinero;
         Visibility ajustesVisibility;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        List<VMCard> cartas = new List<VMCard>();
+        VMCard cardSelected = null;
         public Tienda()
         {
             this.InitializeComponent();
             ajustesVisibility = Visibility.Collapsed;
+            foreach (Card card_ in Model.Cartas_Tienda)
+            {
+                cartas.Add(new VMCard(card_));
+            }
         }
 
         public void ActualizaIU()
@@ -71,6 +77,43 @@ namespace Hito5
         private void Exit_Game(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void SelectCard(object sender, ItemClickEventArgs e)
+        {
+            cardSelected = e.ClickedItem as VMCard;
+        }
+
+        private void ShopCard(object sender, RoutedEventArgs e)
+        {
+            if (cardSelected != null)
+            {
+                VMCard card = cardSelected;
+                if (dinero > card.Precio)
+                {
+                    Model.Cartas.Add(card);
+                    foreach (Card card_ in Model.Cartas_Tienda)
+                    {
+                        if (card_.Nombre == card.Nombre)
+                        {
+                            Model.Cartas_Tienda.Remove(card_);
+                            break;
+                        }
+                    }
+                    dinero -= card.Precio;
+                    Model.Dinero = dinero;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(dinero)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(cartas)));
+                    List<VMCard> newList = new List<VMCard>();
+                    cartas = new List<VMCard>();
+                    foreach (Card card_ in Model.Cartas_Tienda)
+                    {
+                        newList.Add(new VMCard(card_));
+                        cartas.Add(new VMCard(card_));
+                    }
+                    StyledGrid.ItemsSource = newList;
+                }
+            }
         }
     }
 }

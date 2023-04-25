@@ -52,6 +52,7 @@ namespace Hito5
         public int Mana { get; set; }
         public int Quantity { get; set; }
         public tipo Tipo { get; set; }
+        public int Precio { get; set; }
 
         public Card() { }
         public Card(Card card) {
@@ -65,10 +66,12 @@ namespace Hito5
             Skills = card.Skills;
             Icon = card.Icon;
             Quantity = card.Quantity;
+            Precio = card.Precio;
         }
     }
     public class Model
     {
+        public static int Dinero = 40000;
         public static List<Card> Cartas = new List<Card>()
         {
             new Card()
@@ -114,6 +117,56 @@ namespace Hito5
                 Damage = "",
                 Mana = 1,
                 Quantity = 0
+            }
+        };
+        public static List<Card> Cartas_Tienda = new List<Card>()
+        {
+            new Card()
+            {
+                Id = 0,
+                Nombre = "Antonio José",
+                Imagen = "Assets\\Card.png",
+                Skills = "Indomable",
+                Icon = "Assets\\Sword.png",
+                Descripcion = @"Cuando 'Antonio José' 
+                                entra el campo de batalla hace AAAAAAAA",
+                Tipo = Card.tipo.Guerrero,
+                Vida = "3",
+                Damage = "1",
+                Mana = 1,
+                Quantity = 0,
+                Precio = 3000
+            },
+            new Card()
+            {
+                Id = 0,
+                Nombre = "Jose María",
+                Imagen = "Assets\\Deck.png",
+                Skills = "Doble daño",
+                Icon = "Assets\\Sword.png",
+                Descripcion = @"Cuando 'Jose María' 
+                                entra el campo de batalla hace 1 pto de daño al objetivo",
+                Tipo = Card.tipo.Guerrero,
+                Vida = "3",
+                Damage = "2",
+                Mana = 3,
+                Quantity = 0,
+                Precio = 1500
+            },
+            new Card()
+            {
+                Id = 0,
+                Nombre = "Escarcha",
+                Imagen = "Assets\\Deck.png",
+                Skills = "",
+                Icon = "Assets\\Axe.png",
+                Descripcion = @"Hace 3 pto de daño al objetivo",
+                Tipo = Card.tipo.Hechizos,
+                Vida = "",
+                Damage = "",
+                Mana = 2,
+                Quantity = 0,
+                Precio = 2000
             }
         };
 
@@ -195,7 +248,8 @@ namespace Hito5
             Vida = card.Vida;
             Skills = card.Skills;
             Icon = card.Icon;
-            if(Tipo == Card.tipo.Guerrero)
+            Precio = card.Precio;
+            if (Tipo == Card.tipo.Guerrero)
             {
                 firstRectColor = new SolidColorBrush(Windows.UI.Colors.Orange);
                 secondRectColor = new SolidColorBrush(Windows.UI.Colors.OrangeRed);
