@@ -30,23 +30,31 @@ namespace Hito5
         public event PropertyChangedEventHandler PropertyChanged;
 
         List<VMCard> cartas = new List<VMCard>();
-        // Dictionary<int, Dictionary<VMCard, int>> decks = new Dictionary<int, Dictionary<VMCard, int>>();
         Dictionary<VMCard, int> currentDeck = new Dictionary<VMCard, int>();
-        int currentDeckIndex = 0;
+        VMDeck deckSelected = null;
         public EditarMazo()
         {
-
+            this.InitializeComponent();
+            ajustesVisibility = Visibility.Collapsed;
             foreach (Card card_ in Model.Cartas)
             {
                 cartas.Add(new VMCard(card_));
             }
-            this.InitializeComponent();
-            ajustesVisibility = Visibility.Collapsed;
         }
 
-        private void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // currentDeck = decks[int.Parse(e.ToString())];
+            deckSelected = e.Parameter as VMDeck;
+            foreach (Card card__ in deckSelected.Cartas)
+            {
+                currentDeck.Add(new VMCard(card__), card__.Quantity);
+            }
+            List<VMCard> newList = new List<VMCard>();
+            foreach (KeyValuePair<VMCard, int> card in currentDeck)
+            {
+                newList.Add(card.Key);
+            }
+            CurrentDeck.ItemsSource = newList;
         }
         public void ActualizaIU()
         {
@@ -75,19 +83,27 @@ namespace Hito5
         public void AddToDeckList(object sender, ItemClickEventArgs e)
         {
             VMCard card_ = e.ClickedItem as VMCard;
-            if (!currentDeck.ContainsKey(card_)) {
+            int i = 0;
+            foreach (KeyValuePair<VMCard, int> carta in currentDeck)
+            {
+                if(carta.Key.Nombre == card_.Nombre)
+                {
+                    carta.Key.Quantity++;
+                    currentDeck[carta.Key]++;
+                    break;
+                }
+                ++i;
+            }
+            if(i == currentDeck.Count)
+            {
                 card_.Quantity = 1;
-                currentDeck.Add(card_, card_.Quantity); 
+                currentDeck.Add(card_, card_.Quantity);
             }
-            else {
-                card_.Quantity++;
-                currentDeck[card_]++;
-            }
-            Dictionary<VMCard, int> newMap = new Dictionary<VMCard, int>();
-            List<VMCard> newList = new List<VMCard>();
+            List<Card> newList = new List<Card>();
             foreach(KeyValuePair<VMCard, int> card in currentDeck) {
                 newList.Add(card.Key);
             }
+            deckSelected.Cartas = newList;
             CurrentDeck.ItemsSource = newList;
         }
 
@@ -100,11 +116,12 @@ namespace Hito5
                 currentDeck.Remove(card_);
             }
             else currentDeck[card_]--;
-            List<VMCard> newList = new List<VMCard>();
+            List<Card> newList = new List<Card>();
             foreach (KeyValuePair<VMCard, int> card in currentDeck)
             {
                 newList.Add(card.Key);
             }
+            deckSelected.Cartas = newList;
             CurrentDeck.ItemsSource = newList;
         }
         private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
@@ -121,6 +138,22 @@ namespace Hito5
         private void Exit_Game(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void Save_Deck_Data(object sender, RoutedEventArgs e)
+        {
+            foreach (Deck deck in Model.Mazos)
+            {
+                if(deck.Index == deckSelected.Index)
+                {
+                    Model.Mazos[deck.Index].Cartas = deckSelected.Cartas;
+                    break;
+                }
+            }
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
     }
 }

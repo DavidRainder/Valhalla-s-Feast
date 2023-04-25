@@ -295,7 +295,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0">
-                    <Button CornerRadius="20" Background="Orange" BorderBrush="DarkOrange" Content="GUARDAR" Width="120" Height="50"></Button>
+                    <Button CornerRadius="20" Background="Orange" BorderBrush="DarkOrange" Content="GUARDAR" Width="120" Height="50" Click="Save_Deck_Data"></Button>
                 </Viewbox>
                 <Viewbox Grid.Column="1">
                     <Button CornerRadius="20" Background="DarkOrange" BorderBrush="Orange" Content="TODAS" Width="100" Height="40"></Button>
@@ -325,6 +325,8 @@
                     <StackPanel>
                     <Viewbox>
                     <ListView x:Name="CurrentDeck" 
+                              IsTabStop="True"
+                              TabIndex="0"
                               ItemClick="RemoveCardFromList"
                               IsItemClickEnabled="True"
                               ItemTemplate="{StaticResource Card_List}" 

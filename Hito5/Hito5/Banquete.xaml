@@ -41,7 +41,7 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="Deck">
+        <DataTemplate x:Key="Deck" x:DataType="local:VMDeck">
             <Grid>
                 <Border CornerRadius="30">
                     <StackPanel Width="198" Height="240">
@@ -52,14 +52,13 @@
                     </StackPanel>
                 </Border>
                 <Border Margin="0,10" CornerRadius="10" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Image Source="Assets/Deck.png" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Source="{Binding Imagen}" Height="155" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                 </Border>
-                <TextBlock Text="Nombre Mazo" Foreground="DarkGray" VerticalAlignment="Bottom"
+                <TextBlock Text="{Binding Nombre}" Foreground="DarkGray" VerticalAlignment="Bottom"
                            HorizontalAlignment="Center" Margin="0,20" FontSize="20" FontFamily="{StaticResource Fuente}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <!--Background="LightBlue" BorderBrush="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"-->
 
     <Grid>
         <Grid>
@@ -242,8 +241,10 @@
                     <ColumnDefinition Width="47*"/>
                     <ColumnDefinition Width="628*"/>
                 </Grid.ColumnDefinitions>
-                <GridView ItemsSource="123456789ABCDEF"
-                    x:Name="StyledGrid"
+                <GridView ItemsSource="{x:Bind mazos}"
+                    x:Name="DecksDisponibles"
+                    IsItemClickEnabled="True"
+                    ItemClick="DeckSelected"
                     ItemTemplate="{StaticResource Deck}" Grid.ColumnSpan="2">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
