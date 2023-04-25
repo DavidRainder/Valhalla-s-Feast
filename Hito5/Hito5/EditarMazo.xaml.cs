@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
@@ -32,6 +33,8 @@ namespace Hito5
         List<VMCard> cartas = new List<VMCard>();
         Dictionary<VMCard, int> currentDeck = new Dictionary<VMCard, int>();
         VMDeck deckSelected = null;
+        int totalQuantity = 0;
+        const int maxQuantity = 60;
         public EditarMazo()
         {
             this.InitializeComponent();
@@ -52,6 +55,7 @@ namespace Hito5
             List<VMCard> newList = new List<VMCard>();
             foreach (KeyValuePair<VMCard, int> card in currentDeck)
             {
+                totalQuantity += card.Value;
                 newList.Add(card.Key);
             }
             CurrentDeck.ItemsSource = newList;
@@ -82,6 +86,7 @@ namespace Hito5
 
         public void AddToDeckList(object sender, ItemClickEventArgs e)
         {
+            if (totalQuantity >= maxQuantity) return;
             VMCard card_ = e.ClickedItem as VMCard;
             int i = 0;
             foreach (KeyValuePair<VMCard, int> carta in currentDeck)
@@ -99,6 +104,7 @@ namespace Hito5
                 card_.Quantity = 1;
                 currentDeck.Add(card_, card_.Quantity);
             }
+            totalQuantity++;
             List<Card> newList = new List<Card>();
             foreach(KeyValuePair<VMCard, int> card in currentDeck) {
                 newList.Add(card.Key);
