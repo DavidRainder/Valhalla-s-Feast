@@ -27,10 +27,22 @@ namespace Hito5.Assets
         Visibility ajustesVisibility;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        List<VMDeck> mazos = new List<VMDeck>();
+        VMDeck deckSelected = null;
         public Jugar()
         {
             this.InitializeComponent();
             ajustesVisibility = Visibility.Collapsed;
+            int i = 0;
+            foreach (Deck deck_ in Model.Mazos)
+            {
+                if (deck_.Ready)
+                {
+                    deck_.Index = i;
+                    mazos.Add(new VMDeck(deck_));
+                    ++i;
+                }
+            }
         }
         public void ActualizaIU()
         {
@@ -62,13 +74,10 @@ namespace Hito5.Assets
 
         private void Partida_Page(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Partida));
+            if(deckSelected != null)
+                Frame.Navigate(typeof(Partida));
         }
 
-        private void StyledGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         private void Show_Ajustes_Menu(object sender, RoutedEventArgs e)
         {
             ajustesVisibility = Visibility.Visible;
@@ -83,6 +92,11 @@ namespace Hito5.Assets
         private void Exit_Game(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void DeckSelected(object sender, ItemClickEventArgs e)
+        {
+            deckSelected = e.ClickedItem as VMDeck;
         }
     }
 }

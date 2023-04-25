@@ -58,6 +58,7 @@ namespace Hito5
                 totalQuantity += card.Value;
                 newList.Add(card.Key);
             }
+            if (totalQuantity == maxQuantity) deckSelected.Ready = true;
             CurrentDeck.ItemsSource = newList;
         }
         public void ActualizaIU()
@@ -86,7 +87,7 @@ namespace Hito5
 
         public void AddToDeckList(object sender, ItemClickEventArgs e)
         {
-            if (totalQuantity >= maxQuantity) return;
+            if (totalQuantity >= maxQuantity) {deckSelected.Ready = true; return; }
             VMCard card_ = e.ClickedItem as VMCard;
             int i = 0;
             foreach (KeyValuePair<VMCard, int> carta in currentDeck)
@@ -127,6 +128,7 @@ namespace Hito5
             {
                 newList.Add(card.Key);
             }
+            totalQuantity--;
             deckSelected.Cartas = newList;
             CurrentDeck.ItemsSource = newList;
         }
@@ -153,6 +155,7 @@ namespace Hito5
                 if(deck.Index == deckSelected.Index)
                 {
                     Model.Mazos[deck.Index].Cartas = deckSelected.Cartas;
+                    Model.Mazos[deck.Index].Ready = deckSelected.Ready;
                     break;
                 }
             }

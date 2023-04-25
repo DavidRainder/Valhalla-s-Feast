@@ -13,33 +13,28 @@ using System.Drawing;
 
 namespace Hito5
 {
-    public class Info_Container
-    {
-        List<VMCard> DeckList;
-    }
-
     public class Deck
     {
         public int Index { get; set; }
         public string Nombre { get; set; }
         public string Imagen { get; set; }
         public List<Card> Cartas = new List<Card>();
+        public bool Ready { get; set; }
 
         public Deck() { }
     }
 
     internal class VMDeck : Deck
     {
-        public SolidColorBrush firstRectColor;
-        public SolidColorBrush secondRectColor;
         public int Quantity;
-        public VMDeck(Deck card)
+        public VMDeck(Deck deck)
         {
             Quantity = 0;
-            Nombre = card.Nombre;
-            Imagen = card.Imagen;
-            Index = card.Index;
-            Cartas = card.Cartas;
+            Nombre = deck.Nombre;
+            Imagen = deck.Imagen;
+            Index = deck.Index;
+            Cartas = deck.Cartas;
+            Ready = deck.Ready;
         }
     }
 
@@ -143,7 +138,7 @@ namespace Hito5
                         Vida = "1",
                         Damage = "1",
                         Mana = 2,
-                        Quantity = 3
+                        Quantity = 20
                     },
                     new Card()
                     {
@@ -158,7 +153,7 @@ namespace Hito5
                         Vida = "1",
                         Damage = "1",
                         Mana = 2,
-                        Quantity = 2
+                        Quantity = 20
                     },
                     new Card()
                     {
@@ -172,7 +167,7 @@ namespace Hito5
                         Vida = "",
                         Damage = "",
                         Mana = 1,
-                        Quantity = 4
+                        Quantity = 20
                     }
                 }
     },
