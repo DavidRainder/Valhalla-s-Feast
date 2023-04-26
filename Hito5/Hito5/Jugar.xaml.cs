@@ -33,7 +33,7 @@ namespace Hito5.Assets
         {
             this.InitializeComponent();
             ajustesVisibility = Visibility.Collapsed;
-            int i = 0;
+            /*int i = 0;
             foreach (Deck deck_ in Model.Mazos)
             {
                 if (deck_.Ready)
@@ -42,6 +42,13 @@ namespace Hito5.Assets
                     mazos.Add(new VMDeck(deck_));
                     ++i;
                 }
+            }*/
+            int i = 0;
+            foreach (Deck deck_ in Model.Mazos)
+            {
+                deck_.Index = i;
+                mazos.Add(new VMDeck(deck_));
+                ++i;
             }
         }
         public void ActualizaIU()

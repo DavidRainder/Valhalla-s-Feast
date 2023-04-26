@@ -204,13 +204,6 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Row="2">
-                    <!--<Button Margin="40"  CornerRadius="20" Grid.Column="0" FontSize="80"
-                        FontStyle="Italic" Foreground="CadetBlue"
-                        HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
-                        BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"
-                        Content="Evento Actual" Height="446" Width="617"
-                        >
-                    </Button>-->
                     <Grid>
                         <Button CornerRadius="100" Background="Transparent" BorderBrush="Transparent" Margin="90,0,0,0">
                             <Image HorizontalAlignment="Center" Source="Assets/Evento.png" VerticalAlignment="Center" Stretch="None"/>
@@ -225,10 +218,28 @@
         <Border Background="Black" Opacity="0.4"
                 Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
         </Border>
-        <Border Width="1000" Height="600" Background="BurlyWood" CornerRadius="30"
-                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}">
+        <Border Width="1100" Height="800" Background="Transparent" CornerRadius="30"
+                Visibility="{x:Bind ajustesVisibility, Mode=OneWay}"
+                VerticalAlignment="Top">
             <Grid>
-                <TextBlock Text="Ajustes" HorizontalAlignment="Center" FontSize="50"/>
+                <Image Source="Assets/Settings_Sign.png"></Image>
+                <TextBlock Text="Ajustes" HorizontalAlignment="Center" FontSize="50"
+                           Margin="0, 180"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Width="650" Height="70"
+                            Orientation="Horizontal">
+                    <TextBlock Margin="0,10,0,0"  Text="Gráficos:" FontSize="40"></TextBlock>
+                    <RadioButton IsChecked="True" GroupName="Type" Content="Bajo" Margin="20" FontSize="20" FontFamily="{StaticResource Fuente}"></RadioButton>
+                    <RadioButton Content="Medio" GroupName="Type" FontSize="20" FontFamily="{StaticResource Fuente}"></RadioButton>
+                    <RadioButton Content="Alto" GroupName="Type" FontSize="20" FontFamily="{StaticResource Fuente}"></RadioButton>
+                    <RadioButton Content="Muy Alto" GroupName="Type" FontSize="20" FontFamily="{StaticResource Fuente}"></RadioButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Width="650" Height="70" Margin="0,250,0,0">
+                    <TextBlock Margin="0,10,0,0"  Text="Volumen:" FontSize="40"></TextBlock>
+                    <Slider Width="400" Margin="50,20,0,0"></Slider>
+                </StackPanel>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" 
                             Width="600" Height="70"
                             Orientation="Horizontal"
