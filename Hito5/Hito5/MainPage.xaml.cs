@@ -41,6 +41,12 @@ namespace Hito5
             BotonInicio.Focus(FocusState.Programmatic);
             ajustesVisibility = Visibility.Collapsed;
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            BotonInicio.Focus(FocusState.Keyboard);
+        }
         public void ActualizaIU()
         {
 
