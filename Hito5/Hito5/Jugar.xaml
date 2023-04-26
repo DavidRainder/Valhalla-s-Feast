@@ -93,14 +93,14 @@
                 </StackPanel>
             </Viewbox>
             <!--Usuario-->
-            <ContentControl IsTabStop="True"
+            <ContentControl IsTabStop="False"
                         Grid.Column="2" UseSystemFocusVisuals="True" 
                         Margin="0,0,115,0">
-                <StackPanel Orientation="Horizontal" Padding="10" Height="92" 
+                <StackPanel  Orientation="Horizontal" Padding="10" Height="92" 
                     IsTapEnabled="True" TabFocusNavigation="Once" Width="369">
                     <Viewbox>
                         <Grid Width="355" >
-                            <Grid HorizontalAlignment="Left" 
+                            <Grid HorizontalAlignment="Left"
                                 Height="50"
                                   Margin="60,0,0,0">
                                 <Grid.RowDefinitions>
@@ -127,8 +127,8 @@
                                      Height="67" Width="61"
                                      Margin="100, 0, 0, 0"
                                      >
-                                <ContentControl IsTabStop="True" UseSystemFocusVisuals="True" >
-                                    <Button Click="Show_Ajustes_Menu" 
+                                <ContentControl >
+                                    <Button Click="Show_Ajustes_Menu" IsTabStop="True" UseSystemFocusVisuals="True" 
                                             Background="Transparent" BorderBrush="Transparent">
                                         <Image Source="Assets/Settings.png" Width="50" Height="50" Margin="10"></Image>
                                     </Button>
