@@ -176,6 +176,7 @@ namespace Hito5
             {
                 Nombre = "Mazo 1",
                 Imagen = "Assets\\Deck.png",
+                Ready = true,
                 Cartas = new List<Card>()
                 {
                     new Card()
